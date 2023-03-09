@@ -487,7 +487,7 @@ var cuadrados = document.getElementsByClassName('cuadrados');
 
 function mouseEnter(a, c) {
   a.style.backgroundColor = "black";
-  bird.style.backgroundImage = "url('images/img/pajaros_" + c + ".jpg')";
+  bird.style.backgroundImage = "url('https://github.com/keinRoboter/VirtualExistence/blob/main/uploads/pajaros_" + c + ".jpg')";
   // bird.style.backgroundImage = "url(img/pajaros_ " + c + ".jpg)";
   bird.style.backgroundSize = "cover";
 }
