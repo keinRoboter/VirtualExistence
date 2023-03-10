@@ -560,225 +560,124 @@ let checkerP5 = function(p5e) {
 };
 new p5(checkerP5, allocate1);
 
-////////////////////////////////////////////////////////////////////////////////////Scroll
-//--------Scroll event (control enable/disable)
+//###########################################################################################################--------- Forders
 
-var oneTimeVideo = false;
-var oneTimeHello = false;
-var oneTimeTransfer = false;
-var oneTimeSafety = false;
-var oneTimeReflexion = false;
-var oneTimeChess = false;
-var oneTimeBirds = false;
+var conter = 0;
+var scl = 2.5;
+var advance = [10, 25, 47, 70];
+var c = 0;
+var dumi;
+var img_recuerdos = document.getElementById("general_cover")
+var grosor = 3 * scl;
+var ancho = 90 * scl;
+let recuerdos = function(p) {
+  var random_color = 100;
+  var random_gris = 100;
+  var bord = getComputedStyle(img_recuerdos, null).getPropertyValue('border');
+  bord = parseFloat(bord.substring(0, bord.search("px")));
+  var wiwi = getComputedStyle(img_recuerdos, null).getPropertyValue('width');
+  wiwi = parseFloat(wiwi.substring(0, wiwi.search("px")));
+  heihei = getComputedStyle(img_recuerdos, null).getPropertyValue('height');
+  var heihei = parseFloat(heihei.substring(0, heihei.search("px")));
 
-var reflexionAudio = document.getElementById('reflexionAudio');
+  p.setup = function() {
+    p.createCanvas(wiwi - bord, heihei - bord);
+    // p.background(0);
+    p.colorMode(p.HSB, 360, 100, 100, 100);
+  }
+  p.draw = function() {
+    let a = p.random(-(wiwi - bord), (wiwi - bord));
+    let b = p.random(-(heihei - bord), (heihei - bord));
 
-var safety = document.getElementById('safety');
-var safetyAudio = document.getElementById('safetyAudio');
-
-var transfer = document.getElementById('transfer');
-var elementTransfer = document.getElementById('transferAudio');
-
-const videoIntro = document.querySelector('.video');
-var scrollDown = document.getElementById('scroll_down');
-scrollDown.style.display = "none"; //Dont show scroll bar
-var refHeight = window.innerHeight;
-var refWidth = window.innerWidth;
-
-var elementHello = document.getElementById('audioHello');
-const bottonHello = document.getElementById('check_hello');
-const bottonHello2 = document.getElementById('check_hello2');
-const cancelHello1 = document.getElementById('cancel_hello1');
-const bottonHello3 = document.getElementById('check_hello3');
-const cancelHello2 = document.getElementById('cancel_hello2');
-//--------------------------------------------------Event for pressing Hello Button -/ INTERACTION
-bottonHello.addEventListener('click', function() {
-  enableScroll();
-  elementHello.pause();
-  window.scrollTo({
-    top: 2.8 * refHeight,
-    left: 0,
-    behavior: "smooth"
-  });
-});
-// second choice
-cancelHello1.addEventListener('click', function() {
-  elementHello.play();
-  oneTimeHello = true;
-  disableScroll();
-});
-bottonHello2.addEventListener('click', function() {
-  enableScroll();
-  elementHello.pause();
-});
-// third choice
-cancelHello2.addEventListener('click', function() {
-  elementHello.play();
-  oneTimeHello = true;
-  disableScroll();
-});
-
-bottonHello3.addEventListener('click', function() {
-  enableScroll();
-  elementHello.pause();
-});
-
-//----------------------thresholds
-
-var bg_ch1 = 9;
-var bg_ch2 = 24.5;
-var bg_ch3 = 40.5;
-var bg_ch4 = 100;
-var bg_final = 100;
-
-
-
-var intro_thr = 1.9;
-var hello_thr = 0.9;
-var transfer_thr = 7;
-var safety_thr = 34.5;
-var refl_thr = 17.8;
-var offset = 0;
-var chess_thr = 29.5;
-var birds_thr = 36;
-
-document.getElementById('effortless_text').style.display = "none";
-document.getElementById('cursor_chess').style.display = "none";
-
-window.addEventListener("mousemove", function() {
-      if (evaluate_chess == true) {
-        if (variance > 25) {
-          enableScroll();
-          evaluate_chess = false;
-          document.getElementById('cursor_chess').style.display = "none";
-          document.getElementById('effortless_text').style.display = "block";
-          window.scrollTo({
-   				  top: (31.4 + offset) * refHeight,
-  				  left: 0,
-   					behavior: "smooth"
-  				});
-        }
-      }
-       let scroll2 = window.scrollY;
-        if (scroll2 > refHeight * (birds_thr + offset) && oneTimeBirds == false) {
-        	disableScroll();
-          countBird = a_birds_check.reduce(function(a, b){
-  						return a + b;
-					});
-          //console.log(countBird);
-       		 if (countBird > 13){
-        			oneTimeBirds = true;
-        			enableScroll();
-       		 }
-        }
+    p.rect(a, b, ancho, 130 * scl);
+    p.noStroke();
+    p.fill(c, 93, random_color, 100);
+    if (random_color > 30) {
+      random_color = random_color - 0.25;
     }
+    p.rect(a + grosor, b + grosor, (ancho - (2 * grosor)), 100 * scl);
+    p.noStroke();
+    p.fill(c, 0, random_gris, 100);
+    if (random_gris > 60) {
+      random_gris = random_gris - 0.25;
+    }
+
+  };
+}
+// new p5(recuerdos, img_recuerdos);
+//---------------------------------------Code for folders:
+function instance_folder(a, u) {
+  // console.log("Hello!")
+  a.style.display = "none";
+  c = u;
+  dumi = document.createElement("div");
+  document.getElementById('general_cover').appendChild(dumi);
+  document.getElementById('general_cover').style.zIndex = 100;
+  new p5(recuerdos, dumi);
+  setTimeout(() => {
+    // console.log("World!");
+    document.getElementById('general_cover').style.zIndex = 0
+    dumi.remove();
+    /*
+    advance = advance+0.25;
+    advance_px = advance*document.body.scrollHeight;
+    window.scrollTo(0,advance_px);
+    */
+    var con = "-" + advance[conter] + "vh";
+    // console.log(con);
+    document.getElementById('id_alter').style.bottom = "-" + advance[conter] + "vh";
+    document.getElementById('id_image_alter').style.bottom = advance[conter] + "vh";
+    conter = conter + 1;
+    if (conter == 4) {
+      conter = 0;
+      setTimeout(() => {
+        document.getElementById('popup_gedaechtnis').style.display = "block";
+      }, 1000);
+    }
+    //document.getElementById('general_cover').style.top = advance_px + "px";
+  }, 5000);
+}
+var carpetas = document.getElementsByClassName('carpeta');
+var arr_color = [360, 210, 120, 80];
+for (let i = 0; i < carpetas.length; i++) {
+  // console.log(arr_color[i]);
+  carpetas[i].addEventListener(
+    "mouseenter",
+    function() {
+      instance_folder(carpetas[i], arr_color[i]);
+    }, false
+  );
+}
+
+var checkRec = document.getElementById('check_recuerdos');
+var cancelRec = document.getElementById('cancel_recuerdos');
+var popupRecuerdos = document.getElementById('popup_gedaechtnis')
+
+
+checkRec.addEventListener(
+  "click",
+  function() {
+  	enableScroll();
+    let icono = document.getElementsByClassName("carpeta");
+    document.getElementById('id_alter').style.bottom = "0vh";
+    window.scrollTo({
+    top: (43 + offset) * refHeight,
+    left: 0,
+    behavior: "auto"
+  	});
+    document.getElementById('id_image_alter').style.bottom = "0vh";
+    popupRecuerdos.style.display = "none";
+    for (let i = 0; i < icono.length; i++) {
+      icono[i].style.display = "block";
+    }
+  }, false
 );
 
-var countBird;
-
-    //--- Scroll control
-window.addEventListener("scroll", function() {
-      let scroll = window.scrollY;
-      let bodyy = window.document.querySelector('.body');
-      
-      //console.log(a_birds_check);
-      //console.log(oneTimeBirds);
-      // birds scroll
-      
-      // mouse
-      if (scroll > refHeight * (chess_thr + offset) && oneTimeChess == false) {
-        document.getElementById('cursor_chess').style.display = "flex";
-        evaluate_chess = true;
-        disableScroll();
-        oneTimeChess = true;
-      }
-
-      //--background change
-      if (scroll > refHeight * bg_ch1 && scroll < refHeight * (bg_ch2 + offset)) {
-        bodyy.style.background = "rgba(0,0,0,0.1)";
-      }
-      if (scroll > refHeight * (bg_ch2 + offset) && scroll < refHeight * (bg_ch3 + offset)) {
-        bodyy.style.background = "rgba(0,0,0,0.2)";
-      }
-      if (scroll > refHeight * (bg_ch3 + offset) && scroll < refHeight * (bg_ch4 + offset)) {
-        bodyy.style.background = "rgba(0,0,0,0.4)";
-      }
-      if (scroll > refHeight * (bg_ch4 + offset) && scroll < refHeight * (bg_final + offset)) {
-        bodyy.style.background = "rgba(0,0,0,0.6)";
-      }
-      if (scroll > refHeight * (bg_final + offset)) {
-        bodyy.style.background = "rgba(0,0,0,8)";
-      }
-
-      //--Keep going - function
-      function weiter() {
-        scrollDown.style.display = "flex";
-        enableScroll();
-      }
-      //--Weiter 2
-      function weiter2() {
-        window.scrollTo({
-          top: 19.5 * refHeight,
-          left: 0,
-          behavior: "smooth"
-        });
-        //enableScroll();
-      }
-      //-------Video Show Scroll (listen to my story...)
-      if (scroll > refHeight * intro_thr && oneTimeVideo == false) {
-        videoIntro.play();
-        oneTimeVideo = true;
-        disableScroll();
-        const myTimeout = setTimeout(weiter, 11200);
-      }
-      //-------Hello_audio
-      if (scroll > refHeight * hello_thr && oneTimeHello == false) {
-        elementHello.play();
-        oneTimeHello = true;
-        disableScroll();
-      }
-      //---------Transfer completed
-      if (scroll > refHeight * transfer_thr && oneTimeTransfer == false) {
-        elementTransfer.play();
-        oneTimeTransfer = true;
-        // const myTimeout = setTimeout(weiter, 11200);
-      }
-      //----------Safety Measure
-      if (scroll > refHeight * (safety_thr + offset) && oneTimeSafety == false) {
-        safetyAudio.play();
-        oneTimeSafety = true;
-        // const myTimeout = setTimeout(weiter, 11200);
-      }
-      //---------AI Disabling Scroll
-      console.log(window.scrollY / refHeight);
-
-      if (scroll > refHeight * refl_thr && oneTimeReflexion == false) {
-        disableScroll();
-        reflexionAudio.play();
-        oneTimeReflexion = true;
-        const myTimeout2 = setTimeout(weiter2, 20200);
-      }
-    });
-
-    //--------check IA
-    const bottonIA = document.getElementById('check_ia');
-    const cancelIA = document.getElementById('cancel_ia');
-    var teilIa = document.getElementById('section_ia'); teilIa.style.display = "none";
-
-    function showIA() {
-      //var scroll = this.scrollY;
-      //window.scrollTo(0, sectionIA);
-      //document.getElementById('section_ia').style.display = "block";
-      offset = 3;
-      teilIa.style.display = "block";
-      teilIa.scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-    bottonIA.addEventListener('click', function() {
-      enableScroll();
-      showIA();
-    }); cancelIA.addEventListener('click', function() {
-      enableScroll();
-    });
+cancelRec.addEventListener(
+  "click",
+  function() {
+    enableScroll();
+    popupRecuerdos.style.display = "none";
+  }, false
+);
 
