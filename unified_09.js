@@ -459,6 +459,7 @@ function solucion() {
     window.document.getElementById('worst_sol').style.visibility = "visible";
     window.document.getElementById('betterWay').style.visibility = "visible";
   }
+   enableScroll();
 }
 
 
