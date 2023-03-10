@@ -146,7 +146,7 @@ var cuadrados = document.getElementsByClassName('cuadrados');
 function mouseEnter(a, c) {
   a.style.backgroundColor = "black";
   //bird.style.backgroundImage = "url('uploads/pajaros_" + c + ".jpg')";
-  bird.style.backgroundImage = "url('https://raw.githubusercontent.com/keinRoboter/VirtualExistence/main/uploads/pajaros_" + c + ".jpg')";
+  bird.style.backgroundImage = "url('https://raw.githubusercontent.com/keinRoboter/VirtualExistence/main/uploads/pajaros_" + (c + 1) + ".jpg')";
   // bird.style.backgroundImage = "url(img/pajaros_ " + c + ".jpg)";
   bird.style.backgroundSize = "cover";
 }
