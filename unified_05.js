@@ -155,11 +155,11 @@ function mouseEnter(a, c) {
 var a_birds_check = Array(30).fill(0);
 
 function mouseLeave(b, d) {
-  if (d > 15) {
+  if (d > 14) {
     b.style.backgroundColor = "rgba(" + 0 + "," + 0 + "," + 0 + "," + 0.1 + ")";
   }
   bird.style.backgroundImage = "";
-  if (d < 15) {
+  if (d < 14) {
     a_birds_check[d] = 1;
   }
 }
