@@ -636,21 +636,7 @@ history.scrollRestoration = "manual"
           $(window).scrollTop(0);
     });
     
-    //###########################################################################################3Bottons popups
-window.addEventListener('wheel', function(event)
-{
- if (event.deltaY < 0)
- {
- 	preventDefault(event);
-  //console.log('trying scrolling up')
-  preventDefaultForScrollKeys(event);
- }
- else if (event.deltaY > 0)
- {
-  //console.log('scrolling down');
- }
-},{passive:false});
-//-------------------------------------------------------------
+//###########################################################################################3Bottons popups
 const botton = document.getElementById('check_inmortal');
 const botton2 = document.getElementById('cancel_inmortal');
 var keys = {
@@ -704,6 +690,22 @@ botton2.addEventListener('click', function() {
   disableScroll();
 });
 disableScroll();
+
+//--------------------------Scroll up
+//window.addEventListener('wheel', function(event)
+//{
+ //if (event.deltaY < 0)
+ //{
+ 	//preventDefault(event);
+  //console.log('trying scrolling up')
+ // preventDefaultForScrollKeys(event);
+ //}
+ //else if (event.deltaY > 0)
+ //{
+  //console.log('scrolling down');
+ //}
+//},{passive:false});
+
 //--------------------------Scroll direction on Cell
 var direccion; 
 var advancenn;
