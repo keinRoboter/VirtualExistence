@@ -386,8 +386,8 @@ function solucion() {
   solved = true;
   // console.log("solved!!!!");
   how_well = partial_img.length;
-  console.log(window.document.getElementById('imp_sol'));
-  console.log(window.document.getElementById('betterWay2'));
+  //console.log(window.document.getElementById('imp_sol'));
+  //console.log(window.document.getElementById('betterWay2'));
   if (how_well < 39) {
     window.document.getElementById('imp_sol').style.visibility = "visible";
     window.document.getElementById('betterWay2').style.visibility = "visible";
@@ -642,12 +642,12 @@ window.addEventListener('wheel', function(event)
  if (event.deltaY < 0)
  {
  	preventDefault(event);
-  console.log('trying scrolling up')
+  //console.log('trying scrolling up')
   preventDefaultForScrollKeys(event);
  }
  else if (event.deltaY > 0)
  {
-  console.log('scrolling down');
+  //console.log('scrolling down');
  }
 },{passive:false});
 //-------------------------------------------------------------
@@ -767,14 +767,14 @@ window.addEventListener('touchmove', function(event)
 
 window.addEventListener("scroll", function() {
 //Responsive Test
-console.log("Scroll Y");
-console.log(window.scrollY);
-console.log("RefHeight");
-console.log(refHeight);
-console.log("Dimensionless");
-console.log(window.scrollY/refHeight);
+//console.log("Scroll Y");
+//console.log(window.scrollY);
+//console.log("RefHeight");
+//console.log(refHeight);
+//console.log("Dimensionless");
+//console.log(window.scrollY/refHeight);
 var devicess = detectMob();
-console.log("Device");
-console.log(devicess);
+//console.log("Device");
+//console.log(devicess);
 
 });
